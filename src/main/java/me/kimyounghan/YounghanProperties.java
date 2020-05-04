@@ -15,7 +15,6 @@ public class YounghanProperties {
 
     private int age;
 
-    @NotEmpty
     private String fullName;
 
     private Duration sessionTimeout = Duration.ofSeconds(30);

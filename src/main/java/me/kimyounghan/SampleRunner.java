@@ -8,14 +8,16 @@ import org.springframework.stereotype.Component;
 @Component
 public class SampleRunner implements ApplicationRunner {
     @Autowired
-    YounghanProperties younghanProperties;
+    private String hello;
+
+    @Autowired
+    private YounghanProperties younghanProperties;
 
     @Override
     public void run(ApplicationArguments args) throws Exception {
         System.out.println("==================================================");
-        System.out.println(younghanProperties.getFullName());
-        System.out.println(younghanProperties.getAge());
-        System.out.println(younghanProperties.getSessionTimeout());
+        System.out.println(hello);
+        System.out.println(younghanProperties.getName());
         System.out.println("==================================================");
     }
 }
