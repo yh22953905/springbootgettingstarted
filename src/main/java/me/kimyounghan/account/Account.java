@@ -1,9 +1,9 @@
 package me.kimyounghan.account;
 
 import org.springframework.data.annotation.Id;
-import org.springframework.data.redis.core.RedisHash;
+import org.springframework.data.mongodb.core.mapping.Document;
 
-@RedisHash("accounts")
+@Document(collection = "accounts")
 public class Account {
     @Id
     private String id;
