@@ -13,29 +13,19 @@ import reactor.core.publisher.Mono;
 @Controller
 public class RestRunner implements ApplicationRunner {
 
-//    @Autowired
-//    RestTemplateBuilder restTemplateBuilder;
-
     @Autowired
     WebClient.Builder builder;
 
     @Override
     public void run(ApplicationArguments args) throws Exception {
-//        RestTemplate restTemplate = restTemplateBuilder.build();
-        WebClient webClient = builder.build();
+        WebClient webClient = builder
+//                .baseUrl("http://localhost:8080")
+                .build();
 
         StopWatch stopWatch = new StopWatch();
         stopWatch.start();
 
-        // TODO /hello
-//        String helloResult = restTemplate.getForObject("http://localhost:8080/hello", String.class);
-//        System.out.println(helloResult);
-
-        // TODO /world
-//        String worldResult = restTemplate.getForObject("http://localhost:8080/world", String.class);
-//        System.out.println(worldResult);
-
-        Mono<String> helloMono = webClient.get().uri("http://localhost:8080/hello")
+        Mono<String> helloMono = webClient.get().uri("/hello")
                 .retrieve()
                 .bodyToMono(String.class);
 
@@ -50,7 +40,7 @@ public class RestRunner implements ApplicationRunner {
             stopWatch.start();
         });
 
-        Mono<String> worldMono = webClient.get().uri("http://localhost:8080/world")
+        Mono<String> worldMono = webClient.get().uri("/world")
                 .retrieve()
                 .bodyToMono(String.class);
 
@@ -64,9 +54,6 @@ public class RestRunner implements ApplicationRunner {
             System.out.println(stopWatch.prettyPrint());
             stopWatch.start();
         });
-
-//        stopWatch.stop();
-//        System.out.println(stopWatch.prettyPrint());
     }
 
 }
